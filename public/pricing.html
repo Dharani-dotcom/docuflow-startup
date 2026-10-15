@@ -1,73 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing Packages — DocuFlow</title>
-    <script src="https://tailwindcss.com"></script>
-    <link href="https://googleapis.com" rel="stylesheet">
-    <script>
-        tailwind.config = { theme: { extend: { colors: { swiggy: '#FC8019', swiggyDark: '#E06F12' }, fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
-    </script>
-    <style>body { background-color: #FFFDFB; color: #3D4152; }</style>
-</head>
-<body class="min-h-screen font-sans flex flex-col justify-between">
-
-    <!-- Header Navigation -->
-    <header class="bg-white border-b border-neutral-100 shadow-sm px-6 md:px-16 py-4 flex items-center justify-between">
-        <a href="/landing.html" class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-swiggy flex items-center justify-center font-bold text-white text-base">DF</div>
-            <span class="text-neutral-900 font-extrabold text-lg">DocuFlow</span>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f5f6">
+    <meta name="description" content="Straightforward DocuFlow pricing for teams at every stage.">
+    <title>Pricing — DocuFlow</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen">
+    <header class="sticky top-0 z-30 border-b border-slate-900/[.06] bg-white/75 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
+        <a href="/landing.html" class="flex items-center gap-3" aria-label="DocuFlow home">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="none"><path d="M7 4.75h6.25L18 9.5v9.75a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-13a1.5 1.5 0 0 1 1-1.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M13 5v5h5M9 14h6M9 17h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+          <span class="text-[17px] font-extrabold tracking-[-.045em] text-slate-900">DocuFlow</span>
         </a>
-        <nav class="hidden md:flex gap-10 text-sm font-bold text-[#3D4152]">
-            <a href="/landing.html" class="hover:text-swiggy transition">Home</a>
-            <a href="/pricing.html" class="text-swiggy">Pricing</a>
-            <a href="/index.html" class="hover:text-swiggy transition">Workspace App</a>
+        <nav class="hidden items-center gap-9 text-[13px] font-semibold text-slate-500 md:flex" aria-label="Main navigation">
+          <a class="transition hover:text-slate-900" href="/landing.html#platform">Platform</a>
+          <a class="text-slate-900" href="/pricing.html" aria-current="page">Pricing</a>
+          <a class="transition hover:text-slate-900" href="/index.html">Workspace</a>
         </nav>
-        <a href="/index.html" class="bg-swiggy text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-swiggyDark transition">Launch Free App</a>
+        <a href="/index.html" class="primary-button rounded-xl px-4 py-2.5 text-xs font-bold">Get started <span aria-hidden="true">↗</span></a>
+      </div>
     </header>
 
-    <!-- Pricing Section -->
-    <main class="max-w-4xl mx-auto px-6 pt-16 pb-24 text-center flex-grow w-full">
-        <h1 class="text-4xl font-extrabold text-[#282C3F] mb-3">Simple, predictable pricing menu.</h1>
-        <p class="text-neutral-500 mb-12 max-w-md mx-auto text-sm">Choose the plan that fits your code velocity. Cancel or upgrade anytime.</p>
+    <main class="mx-auto max-w-6xl px-5 pb-20 pt-14 sm:px-8 sm:pt-20">
+      <section class="hero-stage mx-auto max-w-2xl text-center">
+        <div class="console-kicker mb-4 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[10px] font-semibold text-slate-500"><span class="live-dot !h-1.5 !w-1.5"></span>Clear plans for the way you ship</div>
+        <h1 class="text-[clamp(2.8rem,6vw,4.5rem)] font-semibold leading-[1.02] tracking-[-.075em] text-slate-950">Good docs are<br><span class="gradient-word">worth investing in.</span></h1>
+        <p class="mx-auto mt-5 max-w-lg text-sm leading-6 text-slate-500">Start in the sandbox. Grow into a documentation pipeline that keeps up with your team.</p>
+      </section>
 
-        <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto text-left">
-            <!-- Free Sandbox Tier -->
-            <div class="bg-white border-2 border-neutral-200/60 rounded-3xl p-6 flex flex-col justify-between shadow-sm">
-                <div>
-                    <h3 class="text-lg font-bold text-neutral-800">Sandbox Free</h3>
-                    <p class="text-xs text-neutral-400 mt-1">Perfect for evaluation and hobby scripts.</p>
-                    <div class="my-6"><span class="text-4xl font-black text-neutral-900 font-mono">$0</span> <span class="text-xs text-neutral-400">/ forever</span></div>
-                    <ul class="space-y-3 text-xs font-medium text-neutral-600 border-t border-neutral-100 pt-4">
-                        <li>✅ 1 Active Local Repository Workspace</li>
-                        <li>✅ Web Console Code Playground Access</li>
-                        <li>❌ No Automated GitHub Sync Workers</li>
-                    </ul>
-                </div>
-                <a href="/index.html" class="mt-8 block w-full text-center bg-neutral-100 text-neutral-800 font-bold text-xs py-3 rounded-xl hover:bg-neutral-200 transition">Open Free Sandbox</a>
-            </div>
+      <section class="mx-auto mt-12 grid max-w-4xl items-stretch gap-5 md:grid-cols-2" aria-label="Choose a plan">
+        <article class="surface price-card spotlight flex flex-col rounded-[26px] p-6 sm:p-8">
+          <div class="flex items-start justify-between">
+            <div><span class="text-[10px] font-bold uppercase tracking-[.14em] text-slate-400">For exploring</span><h2 class="mt-2 text-xl font-bold tracking-tight text-slate-900">Sandbox</h2><p class="mt-1 text-xs text-slate-500">A hands-on workspace for your first docs.</p></div>
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-slate-100 text-slate-600"><svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 2.75 6 3.4v7.7l-6 3.4-6-3.4v-7.7l6-3.4Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="m4.4 6.3 5.6 3.2 5.6-3.2M10 9.5v7" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="my-7 flex items-end gap-2"><span class="mono text-5xl font-semibold tracking-[-.08em] text-slate-950">$0</span><span class="pb-1 text-xs text-slate-400">forever</span></div>
+          <a href="/index.html" class="secondary-button rounded-xl px-4 py-3 text-center text-xs font-bold">Open free workspace <span aria-hidden="true">→</span></a>
+          <p class="mb-4 mt-7 border-b border-slate-900/[.07] pb-3 text-[9px] font-bold uppercase tracking-[.14em] text-slate-400">Everything to get started</p>
+          <ul class="space-y-3.5 text-xs text-slate-600">
+            <li class="flex gap-2.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-700" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>1 local repository workspace</li>
+            <li class="flex gap-2.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-700" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Live documentation playground</li>
+            <li class="flex gap-2.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-700" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Interactive function preview</li>
+            <li class="flex gap-2.5 text-slate-400"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 4 8 8m0-8-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Automated GitHub sync workers</li>
+          </ul>
+          <div class="mt-auto pt-7 text-[10px] text-slate-400">No credit card required.</div>
+        </article>
 
-            <!-- Pro Growth Tier -->
-            <div class="bg-white border-2 border-swiggy rounded-3xl p-6 flex flex-col justify-between shadow-md relative">
-                <div class="absolute -top-3 right-6 bg-swiggy text-white font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md">Best Seller</div>
-                <div>
-                    <h3 class="text-lg font-bold text-neutral-800">Growth SaaS</h3>
-                    <p class="text-xs text-neutral-400 mt-1">For fast-moving business engineering squads.</p>
-                    <div class="my-6"><span class="text-4xl font-black text-neutral-900 font-mono">$39</span> <span class="text-xs text-neutral-400">/ monthly base</span></div>
-                    <ul class="space-y-3 text-xs font-medium text-neutral-600 border-t border-neutral-100 pt-4">
-                        <li>✅ Unlimited Remote GitHub Repositories</li>
-                        <li>✅ Automated Sync Loops via GitHub Actions</li>
-                        <li>✅ Custom Domain Hosting + Free SSL Sheets</li>
-                    </ul>
-                </div>
-                <a href="https://stripe.com" class="mt-8 block w-full text-center bg-swiggy text-white font-bold text-xs py-3 rounded-xl hover:bg-swiggyDark shadow-md shadow-swiggy/15 transition">Subscribe Plan ($39)</a>
-            </div>
+        <article class="pro-card price-card spotlight relative flex flex-col overflow-hidden rounded-[26px] border border-emerald-800/30 bg-white p-6 shadow-[0_24px_55px_-25px_rgba(16,123,69,.3),0_8px_20px_-12px_rgba(15,23,42,.2)] ring-1 ring-emerald-700/[.07] sm:p-8">
+          <div class="absolute right-5 top-5 rounded-full border border-emerald-800/10 bg-emerald-50 px-2.5 py-1 text-[8px] font-bold uppercase tracking-[.13em] text-emerald-800">Growth plan</div>
+          <div class="flex items-start justify-between pr-20">
+            <div><span class="text-[10px] font-bold uppercase tracking-[.14em] text-emerald-800/65">For shipping teams</span><h2 class="mt-2 text-xl font-bold tracking-tight text-slate-900">Pro Growth</h2><p class="mt-1 text-xs text-slate-500">Automation and room for every repository.</p></div>
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-800"><svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.5v15M2.5 10h15M4.7 4.7l10.6 10.6m0-10.6L4.7 15.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.4"/></svg></span>
+          </div>
+          <div class="my-7 flex items-end gap-2"><span class="mono text-5xl font-semibold tracking-[-.08em] text-slate-950">$39</span><span class="pb-1 text-xs text-slate-400">per month</span></div>
+          <a href="/index.html" class="primary-button rounded-xl px-4 py-3 text-center text-xs font-bold">Explore Pro in workspace <span aria-hidden="true">→</span></a>
+          <p class="mb-4 mt-7 border-b border-slate-900/[.07] pb-3 text-[9px] font-bold uppercase tracking-[.14em] text-slate-400">Everything in Sandbox, plus</p>
+          <ul class="space-y-3.5 text-xs text-slate-700">
+            <li class="flex gap-2.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-700" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited remote repositories</li>
+            <li class="flex gap-2.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-700" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Automated sync via GitHub Actions</li>
+            <li class="flex gap-2.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-700" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom domains and SSL hosting</li>
+            <li class="flex gap-2.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-700" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Team-ready deployment history</li>
+          </ul>
+          <div class="mt-auto pt-7 text-[10px] text-slate-400">Straightforward monthly billing. Change plans anytime.</div>
+        </article>
+      </section>
+
+      <section class="mx-auto mt-7 grid max-w-4xl gap-3 sm:grid-cols-3" aria-label="Plan details">
+        <div class="surface-soft flex items-center gap-3 rounded-2xl px-4 py-3.5"><span class="grid h-8 w-8 place-items-center rounded-xl bg-white text-emerald-800 shadow-sm"><svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[10px] font-semibold text-slate-600">Start free, no card needed</span></div>
+        <div class="surface-soft flex items-center gap-3 rounded-2xl px-4 py-3.5"><span class="grid h-8 w-8 place-items-center rounded-xl bg-white text-emerald-800 shadow-sm"><svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v6l3.7 2.2M14 8A6 6 0 1 1 2 8a6 6 0 0 1 12 0Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[10px] font-semibold text-slate-600">Upgrade whenever you’re ready</span></div>
+        <div class="surface-soft flex items-center gap-3 rounded-2xl px-4 py-3.5"><span class="grid h-8 w-8 place-items-center rounded-xl bg-white text-emerald-800 shadow-sm"><svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.75 13 3.6v4c0 3-2.1 5.1-5 6.25-2.9-1.15-5-3.25-5-6.25v-4L8 1.75Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="m5.7 7.8 1.5 1.5 3.1-3.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[10px] font-semibold text-slate-600">Your code stays in your repo</span></div>
+      </section>
+
+      <section class="surface mx-auto mt-12 max-w-4xl overflow-hidden rounded-[24px]" aria-labelledby="feature-matrix">
+        <div class="flex flex-col justify-between gap-2 border-b border-slate-900/[.06] px-5 py-5 sm:flex-row sm:items-center sm:px-7">
+          <div><h2 id="feature-matrix" class="text-sm font-bold text-slate-900">Compare what’s included</h2><p class="mt-1 text-[10px] text-slate-400">Choose the workflow that fits the way you ship.</p></div>
+          <div class="hidden grid-cols-2 gap-5 pr-2 text-center text-[9px] font-bold uppercase tracking-[.12em] text-slate-400 sm:grid"><span>Sandbox</span><span class="text-emerald-800">Pro Growth</span></div>
         </div>
+        <div class="divide-y divide-slate-900/[.055] text-xs">
+          <div class="grid grid-cols-[1fr_82px_82px] items-center gap-2 px-5 py-4 sm:grid-cols-[1fr_110px_110px] sm:px-7"><span class="font-medium text-slate-700">Local documentation workspace</span><span class="text-center text-emerald-800" aria-label="Included"><svg class="mx-auto h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-center text-emerald-800" aria-label="Included"><svg class="mx-auto h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <div class="grid grid-cols-[1fr_82px_82px] items-center gap-2 px-5 py-4 sm:grid-cols-[1fr_110px_110px] sm:px-7"><span class="font-medium text-slate-700">Live code-to-doc preview</span><span class="text-center text-emerald-800" aria-label="Included"><svg class="mx-auto h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-center text-emerald-800" aria-label="Included"><svg class="mx-auto h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <div class="grid grid-cols-[1fr_82px_82px] items-center gap-2 px-5 py-4 sm:grid-cols-[1fr_110px_110px] sm:px-7"><span class="font-medium text-slate-700">Automated GitHub Actions sync</span><span class="text-center text-slate-300" aria-label="Not included">—</span><span class="text-center text-emerald-800" aria-label="Included"><svg class="mx-auto h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <div class="grid grid-cols-[1fr_82px_82px] items-center gap-2 px-5 py-4 sm:grid-cols-[1fr_110px_110px] sm:px-7"><span class="font-medium text-slate-700">Unlimited remote repositories</span><span class="text-center text-slate-300" aria-label="Not included">—</span><span class="text-center text-emerald-800" aria-label="Included"><svg class="mx-auto h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <div class="grid grid-cols-[1fr_82px_82px] items-center gap-2 px-5 py-4 sm:grid-cols-[1fr_110px_110px] sm:px-7"><span class="font-medium text-slate-700">Custom domain and SSL hosting</span><span class="text-center text-slate-300" aria-label="Not included">—</span><span class="text-center text-emerald-800" aria-label="Included"><svg class="mx-auto h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        </div>
+      </section>
+
+      <section class="mx-auto mt-16 max-w-4xl" aria-labelledby="pricing-faq">
+        <div class="mb-6 text-center"><p class="text-[10px] font-bold uppercase tracking-[.16em] text-emerald-800">A few quick answers</p><h2 id="pricing-faq" class="mt-2 text-2xl font-semibold tracking-[-.055em] text-slate-900">Good to know.</h2></div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <details class="surface group rounded-2xl p-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-3 text-xs font-bold text-slate-800">Can I try DocuFlow for free?<span class="text-base font-normal text-emerald-800 transition-transform group-open:rotate-45">+</span></summary>
+            <p class="mt-3 max-w-md text-[11px] leading-5 text-slate-500">Yes. Sandbox is free and includes a local workspace with an interactive documentation preview.</p>
+          </details>
+          <details class="surface group rounded-2xl p-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-3 text-xs font-bold text-slate-800">What does Pro Growth add?<span class="text-base font-normal text-emerald-800 transition-transform group-open:rotate-45">+</span></summary>
+            <p class="mt-3 max-w-md text-[11px] leading-5 text-slate-500">The Pro plan adds automated GitHub sync, support for unlimited remote repositories, and custom-domain hosting.</p>
+          </details>
+          <details class="surface group rounded-2xl p-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-3 text-xs font-bold text-slate-800">Can I change plans later?<span class="text-base font-normal text-emerald-800 transition-transform group-open:rotate-45">+</span></summary>
+            <p class="mt-3 max-w-md text-[11px] leading-5 text-slate-500">Choose the plan that fits today. The Sandbox and Pro Growth options are designed for different stages of your workflow.</p>
+          </details>
+          <details class="surface group rounded-2xl p-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-3 text-xs font-bold text-slate-800">Is this a live billing checkout?<span class="text-base font-normal text-emerald-800 transition-transform group-open:rotate-45">+</span></summary>
+            <p class="mt-3 max-w-md text-[11px] leading-5 text-slate-500">No. This site is a product preview; plan buttons open the interactive workspace rather than starting a subscription.</p>
+          </details>
+        </div>
+      </section>
     </main>
 
-    <footer class="bg-[#02060C] text-white/40 px-12 py-5 text-center text-xs">
-        &copy; 2026 DocuFlow Inc. Built for technical workflows.
-    </footer>
-</body>
+    <footer class="border-t border-slate-900/[.06] bg-white/55"><div class="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 text-[10px] text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-8"><span class="font-semibold text-slate-600">DocuFlow <span class="font-normal text-slate-400">· Documentation, delivered.</span></span><div class="flex gap-5"><a class="hover:text-slate-700" href="/landing.html">Platform</a><a class="hover:text-slate-700" href="/index.html">Open workspace</a><span>© 2026 DocuFlow</span></div></div></footer>
+
+    <script>
+      document.querySelectorAll(".spotlight").forEach((card) => {
+        card.addEventListener("pointermove", (event) => {
+          const bounds = card.getBoundingClientRect();
+          card.style.setProperty("--pointer-x", `${event.clientX - bounds.left}px`);
+          card.style.setProperty("--pointer-y", `${event.clientY - bounds.top}px`);
+        });
+      });
+    </script>
+  </body>
 </html>

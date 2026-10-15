@@ -1,90 +1,247 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DocuFlow — Instant Documentation Delivery Pipeline</title>
-    <script src="https://tailwindcss.com"></script>
-    <link href="https://googleapis.com" rel="stylesheet">
-    <script>
-        tailwind.config = { theme: { extend: { colors: { swiggy: '#FC8019', swiggyDark: '#E06F12' }, fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
-    </script>
-    <style>body { background-color: #FFFDFB; color: #3D4152; }</style>
-</head>
-<body class="min-h-screen font-sans flex flex-col justify-between">
-
-    <!-- Global Header Menu -->
-    <header class="bg-white border-b border-neutral-100 shadow-sm px-6 md:px-16 py-4 flex items-center justify-between">
-        <a href="/landing.html" class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-swiggy flex items-center justify-center font-bold text-white text-base">DF</div>
-            <span class="text-neutral-900 font-extrabold text-lg">DocuFlow</span>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f5f6">
+    <meta name="description" content="DocuFlow turns your repository into always-current, beautifully structured documentation.">
+    <title>DocuFlow — Documentation that ships with your code</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen">
+    <header class="sticky top-0 z-30 border-b border-slate-900/[.06] bg-white/75 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
+        <a href="/landing.html" class="flex items-center gap-3" aria-label="DocuFlow home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none"><path d="M7 4.75h6.25L18 9.5v9.75a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-13a1.5 1.5 0 0 1 1-1.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M13 5v5h5M9 14h6M9 17h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </span>
+          <span class="text-[17px] font-extrabold tracking-[-.045em] text-slate-900">DocuFlow</span>
         </a>
-        <nav class="hidden md:flex gap-10 text-sm font-bold text-[#3D4152]">
-            <a href="/landing.html" class="text-swiggy">Home</a>
-            <a href="/pricing.html" class="hover:text-swiggy transition">Pricing</a>
-            <a href="/index.html" class="hover:text-swiggy transition">Workspace App</a>
+        <nav class="hidden items-center gap-9 text-[13px] font-semibold text-slate-500 md:flex" aria-label="Main navigation">
+          <a class="text-slate-900" href="#platform">Platform</a>
+          <a class="transition hover:text-slate-900" href="/pricing.html">Pricing</a>
+          <a class="transition hover:text-slate-900" href="/index.html">Workspace</a>
         </nav>
-        <a href="/index.html" class="bg-swiggy text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-swiggyDark transition">Launch Free App</a>
+        <a href="/index.html" class="primary-button rounded-xl px-4 py-2.5 text-xs font-bold">Get started <span aria-hidden="true">↗</span></a>
+      </div>
     </header>
 
-    <!-- Main Hero Panel -->
-    <main class="max-w-4xl mx-auto px-6 pt-20 pb-24 text-center flex-grow">
-        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-[#282C3F] mb-6 leading-[1.1]">
-            Documentation delivered <br><span class="text-swiggy">instantly on every push.</span>
-        </h1>
-        <p class="text-base md:text-lg text-[#686B78] max-w-xl mx-auto mb-10 font-medium">
-            Stop writing manuals. DocuFlow safely scans your git repository comments and deploys premium public documentation pages in under 45 seconds.
-        </p>
+    <main>
+      <section class="hero-stage mx-auto grid max-w-7xl items-center gap-12 px-5 pb-16 pt-14 sm:px-8 sm:pt-20 lg:grid-cols-[1.02fr_.98fr] lg:gap-16 lg:pb-24 lg:pt-24">
+        <div>
+          <div class="console-kicker mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-semibold text-slate-600">
+            <span class="live-dot" aria-hidden="true"></span>
+            A little more flow in your workflow
+          </div>
+          <h1 class="max-w-2xl text-[clamp(3.5rem,7.2vw,6.25rem)] font-semibold leading-[.98] tracking-[-.085em] text-slate-950">
+            Your docs,<br>
+            <span class="gradient-word">in good flow.</span>
+          </h1>
+          <p class="mt-7 max-w-xl text-base leading-7 text-slate-500 sm:text-[17px]">
+            Beautifully clear documentation, made from the code you already write. Keep every release in sync without slowing down the people who build.
+          </p>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <a href="/index.html" class="w-full sm:w-auto bg-swiggy hover:bg-swiggyDark text-white text-sm font-bold px-8 py-3.5 rounded-xl transition shadow-md shadow-swiggy/10">
-                Open Free Workspace Playground →
-            </a>
-            <a href="/pricing.html" class="w-full sm:w-auto bg-white border-2 border-neutral-200 text-neutral-800 hover:bg-neutral-50 text-sm font-bold px-8 py-3.5 rounded-xl transition shadow-sm">
-                View Pricing Plans
-            </a>
+          <form id="repo-form" class="surface spotlight mt-8 max-w-xl rounded-[22px] p-2.5" novalidate>
+            <div class="grid gap-2 sm:grid-cols-[minmax(0,1fr)_145px]">
+              <label class="sr-only" for="repository">GitHub repository</label>
+              <div class="flex min-w-0 items-center gap-3 rounded-2xl px-3 py-2.5">
+                <svg class="h-5 w-5 shrink-0 text-slate-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.68-3.75-1.32-3.75-1.32-.5-1.3-1.24-1.64-1.24-1.64-1.01-.69.08-.68.08-.68 1.12.08 1.7 1.15 1.7 1.15 1 1.7 2.62 1.21 3.26.92.1-.72.39-1.21.71-1.49-2.47-.28-5.06-1.24-5.06-5.5 0-1.22.44-2.21 1.15-2.99-.12-.28-.5-1.42.11-2.95 0 0 .94-.3 3.06 1.14a10.6 10.6 0 0 1 5.58 0c2.13-1.44 3.06-1.14 3.06-1.14.61 1.53.23 2.67.11 2.95.72.78 1.15 1.77 1.15 2.99 0 4.27-2.6 5.21-5.08 5.49.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg>
+                <span class="min-w-0 flex-1">
+                  <span class="block text-[9px] font-bold uppercase tracking-[.14em] text-slate-400">GitHub repository</span>
+                  <input id="repository" name="repository" class="w-full border-0 bg-transparent p-0 text-sm font-semibold text-slate-800 outline-none placeholder:font-normal placeholder:text-slate-400" placeholder="owner / repository" value="acme / api-platform" autocomplete="off" aria-describedby="form-status">
+                </span>
+              </div>
+              <button type="submit" class="primary-button flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-xs font-bold">
+                Order Live Docs <span aria-hidden="true">→</span>
+              </button>
+            </div>
+            <div class="mt-2 flex flex-wrap items-center justify-between gap-2 border-t border-slate-900/[.055] px-3 pt-2.5">
+              <label class="flex items-center gap-2 text-[10px] font-medium text-slate-500" for="branch">
+                Branch
+                <select id="branch" class="cursor-pointer border-0 bg-transparent py-0 pl-1 pr-5 text-[10px] font-semibold text-slate-700 outline-none">
+                  <option>main</option>
+                  <option>develop</option>
+                  <option>production</option>
+                </select>
+              </label>
+              <span id="form-status" class="text-[10px] text-slate-400" aria-live="polite">No card required · Preview in your workspace</span>
+            </div>
+          </form>
+
+          <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] font-medium text-slate-500">
+            <span class="inline-flex items-center gap-2"><svg class="h-3.5 w-3.5 text-emerald-700" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Read-only repository access</span>
+            <span class="inline-flex items-center gap-2"><svg class="h-3.5 w-3.5 text-emerald-700" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Built for every push</span>
+          </div>
         </div>
 
-        <!-- Team ROI Savings Estimator Component -->
-        <div class="bg-[#282C3F] text-white rounded-3xl p-8 shadow-xl grid md:grid-cols-12 gap-6 items-center text-left max-w-3xl mx-auto">
-            <div class="md:col-span-7">
-                <span class="text-swiggy font-bold text-xs uppercase tracking-wider font-mono">Value Calculator</span>
-                <h2 class="text-xl font-bold text-white mt-0.5 mb-1">Calculate your team's recovered engineering hours</h2>
-                <div class="mt-4">
-                    <div class="flex justify-between items-center mb-1">
-                        <span class="text-xs text-neutral-400">Team Scale</span>
-                        <span class="text-xs font-mono text-swiggy font-black"><span id="devCount">5</span> devs</span>
-                    </div>
-                    <input type="range" id="devSlider" min="1" max="50" value="5" class="w-full accent-swiggy bg-white/10 h-1 rounded-lg appearance-none cursor-pointer">
+        <div class="relative mx-auto w-full max-w-[600px] lg:ml-auto">
+          <div class="absolute -right-5 top-10 h-40 w-40 rounded-full bg-emerald-200/30 blur-3xl"></div>
+          <div class="surface product-frame spotlight corner-marks relative rounded-[28px] p-4 sm:p-5">
+            <div class="flex items-center justify-between border-b border-slate-900/[.06] px-1 pb-4">
+              <div class="flex items-center gap-3">
+                <div class="grid h-9 w-9 place-items-center rounded-xl bg-slate-50 text-slate-700">
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4.75h6.25L18 9.5v9.75a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-13a1.5 1.5 0 0 1 1-1.5Z" stroke="currentColor" stroke-width="1.5"/><path d="M13 5v5h5M9 14h6M9 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                 </div>
+                <div><p class="text-xs font-bold text-slate-800">API reference</p><p class="mt-0.5 text-[10px] text-slate-400">acme / api-platform</p></div>
+              </div>
+              <div class="flex items-center gap-2 rounded-full bg-emerald-50 px-2.5 py-1 text-[9px] font-bold text-emerald-800"><span class="live-dot !h-1.5 !w-1.5"></span>Synced just now</div>
             </div>
-            <div class="md:col-span-5 grid grid-cols-2 gap-4 text-center border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6">
-                <div>
-                    <div class="text-[9px] text-neutral-400 uppercase font-bold">Hours Saved / mo</div>
-                    <div id="hoursSaved" class="text-xl font-black text-white mt-0.5 font-mono">20 hrs</div>
+            <div class="grid gap-4 pt-5 sm:grid-cols-[.8fr_1.2fr]">
+              <div class="rounded-2xl bg-slate-50/90 p-3.5">
+                <p class="mb-3 text-[9px] font-bold uppercase tracking-[.13em] text-slate-400">Endpoints</p>
+                <div class="space-y-1.5 text-[10px]">
+                  <div class="rounded-lg bg-white px-2.5 py-2 font-semibold text-emerald-800 shadow-sm">POST &nbsp;/v1/payments</div>
+                  <div class="px-2.5 py-2 font-medium text-slate-500">GET &nbsp;&nbsp;/v1/customers</div>
+                  <div class="px-2.5 py-2 font-medium text-slate-500">DELETE /v1/tokens</div>
+                  <div class="mt-3 border-t border-slate-200/70 pt-3 text-[9px] font-medium text-slate-400">+ 18 more routes</div>
                 </div>
-                <div>
-                    <div class="text-[9px] text-neutral-400 uppercase font-bold">Capital Saved</div>
-                    <div id="moneySaved" class="text-xl font-black text-emerald-400 mt-0.5 font-mono">$1,500</div>
+              </div>
+              <article class="rounded-2xl border border-slate-900/[.06] bg-white p-4 shadow-[0_8px_24px_-18px_rgba(15,23,42,.3)]">
+                <div class="flex items-center justify-between">
+                  <span class="rounded-md bg-emerald-50 px-2 py-1 text-[8px] font-bold uppercase tracking-[.12em] text-emerald-800">Endpoint</span>
+                  <span class="mono text-[9px] text-slate-400">v1.8.2</span>
                 </div>
+                <h2 class="mt-3 text-[15px] font-bold tracking-tight text-slate-900">Create a payment</h2>
+                <p class="mt-1.5 text-[10px] leading-5 text-slate-500">Creates a secure payment intent for a customer and returns its current state.</p>
+                <div class="mono mt-4 rounded-xl bg-slate-950 p-3.5 text-[9px] leading-[1.9] text-slate-200">
+                  <span class="text-emerald-300">POST</span> /v1/payments<br>
+                  <span class="text-slate-500">{</span><br>
+                  &nbsp;&nbsp;<span class="text-sky-300">amount</span>: <span class="text-amber-200">number</span>,<br>
+                  &nbsp;&nbsp;<span class="text-sky-300">currency</span>: <span class="text-amber-200">string</span><br>
+                  <span class="text-slate-500">}</span>
+                </div>
+              </article>
             </div>
+            <div class="mt-4 flex items-center justify-between rounded-xl bg-emerald-50/75 px-3 py-2.5">
+              <span class="flex items-center gap-2 text-[9px] font-semibold text-slate-600"><span class="live-dot !h-1.5 !w-1.5"></span>Documentation pipeline active</span>
+              <span class="mono text-[9px] text-slate-500">42s build</span>
+            </div>
+          </div>
+          <div class="surface float-note absolute -bottom-5 -left-5 hidden items-center gap-3 rounded-2xl px-4 py-3 sm:flex">
+            <div class="grid h-8 w-8 place-items-center rounded-xl bg-emerald-50 text-emerald-700"><svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><p class="text-[10px] font-bold text-slate-800">Push detected</p><p class="mt-0.5 text-[9px] text-slate-400">main · documentation updated</p></div>
+          </div>
         </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-5 pb-12 sm:px-8" aria-label="Platform highlights">
+        <div class="grid gap-3 border-y border-slate-900/[.07] py-5 sm:grid-cols-3">
+          <div class="flex items-center gap-3 sm:justify-center"><span class="mono text-lg font-semibold tracking-tight text-slate-900">45<span class="text-emerald-700">s</span></span><span class="text-[10px] leading-4 text-slate-500">from commit<br>to clear documentation</span></div>
+          <div class="flex items-center gap-3 sm:justify-center"><span class="mono text-lg font-semibold tracking-tight text-slate-900">100<span class="text-emerald-700">%</span></span><span class="text-[10px] leading-4 text-slate-500">in step with your<br>source of truth</span></div>
+          <div class="flex items-center gap-3 sm:justify-center"><span class="mono text-lg font-semibold tracking-tight text-slate-900">0<span class="text-emerald-700">×</span></span><span class="text-[10px] leading-4 text-slate-500">copy-paste release<br>notes to maintain</span></div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-5 pb-16 pt-8 sm:px-8" aria-labelledby="workflow-title">
+        <div class="surface-soft rounded-[26px] px-5 py-7 sm:px-8 sm:py-9">
+          <div class="mb-7 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+            <div><p class="text-[10px] font-bold uppercase tracking-[.17em] text-emerald-800">A refreshingly simple loop</p><h2 id="workflow-title" class="mt-2 text-2xl font-semibold tracking-[-.055em] text-slate-900 sm:text-3xl">From commit to clarity.</h2></div>
+            <p class="max-w-sm text-xs leading-5 text-slate-500">One small connection. A whole lot less documentation busywork.</p>
+          </div>
+          <div class="grid gap-6 md:grid-cols-[1fr_28px_1fr_28px_1fr] md:items-center">
+            <div class="flex items-center gap-3"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-slate-900/[.06] bg-white text-xs font-bold text-slate-700 shadow-sm">01</span><div><h3 class="text-xs font-bold text-slate-800">Connect your repo</h3><p class="mt-1 text-[10px] text-slate-500">Start with the code you trust.</p></div></div>
+            <span class="step-connector hidden h-px md:block"></span>
+            <div class="flex items-center gap-3"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-emerald-900/[.08] bg-emerald-50 text-xs font-bold text-emerald-800 shadow-sm">02</span><div><h3 class="text-xs font-bold text-slate-800">Keep building</h3><p class="mt-1 text-[10px] text-slate-500">Changes flow with every push.</p></div></div>
+            <span class="step-connector hidden h-px md:block"></span>
+            <div class="flex items-center gap-3"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-emerald-900/[.1] bg-emerald-100/70 text-emerald-800 shadow-sm"><svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.2 3.1 3.1L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3 class="text-xs font-bold text-slate-800">Share the latest</h3><p class="mt-1 text-[10px] text-slate-500">Everyone reads from one source.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="platform" class="mx-auto max-w-7xl px-5 pb-20 pt-8 sm:px-8 sm:pb-24">
+        <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div><p class="text-[10px] font-bold uppercase tracking-[.17em] text-emerald-800">A calmer way to ship</p><h2 class="mt-2 text-3xl font-semibold tracking-[-.055em] text-slate-900 sm:text-4xl">Less chasing. More building.</h2></div>
+          <p class="max-w-sm text-sm leading-6 text-slate-500">A clean documentation workflow that fits the way engineering teams already work.</p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="surface feature-card spotlight rounded-[22px] p-5 sm:p-6">
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-800"><svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 3.5h6l4 4v9a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1v-12a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.4"/><path d="M11.5 3.5v4h4M7.5 11h5M7.5 14h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+            <h3 class="mt-5 text-sm font-bold text-slate-900">Always-current docs</h3><p class="mt-2 text-xs leading-5 text-slate-500">Turn source comments and API changes into a useful reference with every push.</p>
+          </article>
+          <article class="surface feature-card spotlight rounded-[22px] p-5 sm:p-6">
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-800"><svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h13M10 3.5v13M5.4 5.4l9.2 9.2m0-9.2-9.2 9.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="10" cy="10" r="7.1" stroke="currentColor" stroke-width="1.3"/></svg></span>
+            <h3 class="mt-5 text-sm font-bold text-slate-900">No release-day scramble</h3><p class="mt-2 text-xs leading-5 text-slate-500">A lightweight pipeline does the repeatable work, so your team can focus on the product.</p>
+          </article>
+          <article class="surface feature-card spotlight rounded-[22px] p-5 sm:p-6">
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-800"><svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.75 16 5v4.8c0 3.6-2.5 6.1-6 7.45-3.5-1.35-6-3.85-6-7.45V5l6-2.25Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="m7.3 9.9 1.8 1.8 3.7-3.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3 class="mt-5 text-sm font-bold text-slate-900">Your repo stays yours</h3><p class="mt-2 text-xs leading-5 text-slate-500">Built around narrow, read-only access and a workflow that keeps code in your repository.</p>
+          </article>
+        </div>
+
+        <div class="surface spotlight mt-5 grid gap-8 rounded-[26px] p-6 sm:p-8 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
+          <div>
+            <p class="text-[10px] font-bold uppercase tracking-[.16em] text-emerald-800">Your team's time, back</p>
+            <h2 class="mt-2 max-w-lg text-2xl font-semibold tracking-[-.05em] text-slate-900 sm:text-3xl">Give the docs back to the people who write the code.</h2>
+            <p class="mt-3 max-w-xl text-xs leading-5 text-slate-500">Estimate the time your team could reclaim by removing repetitive documentation updates.</p>
+            <label for="team-size" class="mt-7 flex items-center justify-between text-[11px] font-semibold text-slate-600">
+              Team size
+              <span class="mono rounded-lg bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-900"><span id="dev-count">5</span> developers</span>
+            </label>
+            <input id="team-size" class="mt-3 h-1.5 w-full cursor-pointer accent-emerald-700" type="range" min="1" max="50" value="5" aria-label="Team size">
+            <div class="mt-1 flex justify-between text-[9px] text-slate-400"><span>1 developer</span><span>50 developers</span></div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="corner-marks rounded-2xl border border-slate-900/[.06] bg-slate-50/75 p-5 text-center">
+              <p class="text-[9px] font-bold uppercase tracking-[.12em] text-slate-400">Engineering time saved / mo</p>
+              <p class="mono mt-3 text-3xl font-semibold tracking-[-.06em] text-slate-900"><span id="hours-saved">20</span><span class="ml-1 text-xs font-medium tracking-normal text-slate-400">hrs</span></p>
+            </div>
+            <div class="corner-marks rounded-2xl border border-emerald-900/[.08] bg-emerald-50/65 p-5 text-center">
+              <p class="text-[9px] font-bold uppercase tracking-[.12em] text-emerald-900/55">Estimated value / mo</p>
+              <p class="mono mt-3 text-3xl font-semibold tracking-[-.06em] text-emerald-900">$<span id="money-saved">1,500</span></p>
+            </div>
+            <p class="col-span-2 text-center text-[9px] text-slate-400">Estimate based on 4 hours per developer at $75 per engineering hour.</p>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer class="bg-[#02060C] text-white/40 px-12 py-5 text-center text-xs">
-        &copy; 2026 DocuFlow Inc. Continuous Delivery Infrastructure Systems.
+    <footer class="border-t border-slate-900/[.06] bg-white/55">
+      <div class="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 text-[10px] text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <span class="font-semibold text-slate-600">DocuFlow <span class="font-normal text-slate-400">· Documentation, delivered.</span></span>
+        <div class="flex gap-5"><a class="hover:text-slate-700" href="/pricing.html">Pricing</a><a class="hover:text-slate-700" href="/index.html">Open workspace</a><span>© 2026 DocuFlow</span></div>
+      </div>
     </footer>
 
     <script>
-        const slider = document.getElementById('devSlider');
-        const devCount = document.getElementById('devCount');
-        const hoursSaved = document.getElementById('hoursSaved');
-        const moneySaved = document.getElementById('moneySaved');
-        slider.addEventListener('input', (e) => {
-            const devs = e.target.value; devCount.textContent = devs;
-            const hours = devs * 4; hoursSaved.textContent = hours + ' hrs';
-            const cash = hours * 75; moneySaved.textContent = '$' + cash.toLocaleString();
+      document.querySelectorAll(".spotlight").forEach((card) => {
+        card.addEventListener("pointermove", (event) => {
+          const bounds = card.getBoundingClientRect();
+          card.style.setProperty("--pointer-x", `${event.clientX - bounds.left}px`);
+          card.style.setProperty("--pointer-y", `${event.clientY - bounds.top}px`);
         });
+      });
+
+      const slider = document.getElementById("team-size");
+      const devCount = document.getElementById("dev-count");
+      const hoursSaved = document.getElementById("hours-saved");
+      const moneySaved = document.getElementById("money-saved");
+      slider.addEventListener("input", () => {
+        const developers = Number(slider.value);
+        const hours = developers * 4;
+        devCount.textContent = String(developers);
+        hoursSaved.textContent = String(hours);
+        moneySaved.textContent = (hours * 75).toLocaleString("en-US");
+      });
+
+      document.getElementById("repo-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const repository = document.getElementById("repository");
+        const status = document.getElementById("form-status");
+        const validRepository = /^[\w.-]+\s*\/\s*[\w.-]+$/.test(repository.value.trim());
+        status.textContent = validRepository
+          ? `Ready to preview ${repository.value.trim()} · Open the workspace to continue`
+          : "Enter a GitHub repository in owner / repository format.";
+        status.className = `text-[10px] ${validRepository ? "text-emerald-800" : "text-rose-600"}`;
+        if (!validRepository) repository.focus();
+        else {
+          const query = new URLSearchParams({
+            repo: repository.value.trim().replace(/\s*\/\s*/, "/"),
+            branch: document.getElementById("branch").value
+          });
+          window.location.href = `/index.html?${query}`;
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
