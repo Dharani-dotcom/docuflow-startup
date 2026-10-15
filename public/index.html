@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DocuFlow Engine — Console Workspace</title>
+    <title>Dashboard App Workspace — DocuFlow</title>
     <script src="https://tailwindcss.com"></script>
     <link href="https://googleapis.com" rel="stylesheet">
     <script>
@@ -13,10 +13,10 @@
 </head>
 <body class="min-h-screen font-sans flex flex-col justify-between">
 
-    <!-- Header Navigation -->
+    <!-- Global App Header Navigation Bar -->
     <header class="bg-white border-b border-neutral-100 shadow-sm px-6 md:px-16 py-4 flex items-center justify-between">
         <a href="/landing.html" class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-swiggy flex items-center justify-center font-bold text-white text-base">DF</div>
+            <div class="w-9 h-9 rounded-xl bg-swiggy flex items-center justify-center font-bold text-white text-base shadow-md shadow-swiggy/20">DF</div>
             <span class="text-neutral-900 font-extrabold text-lg">DocuFlow</span>
         </a>
         <nav class="hidden md:flex gap-10 text-sm font-bold text-[#3D4152]">
@@ -24,74 +24,104 @@
             <a href="/pricing.html" class="hover:text-swiggy transition">Pricing</a>
             <a href="/index.html" class="text-swiggy">Workspace App</a>
         </nav>
-        <span class="bg-orange-50 border border-orange-100 text-swiggy font-bold text-xs px-3 py-1.5 rounded-xl">Sandbox Environment</span>
+        <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span id="userProfileBadge" class="text-xs font-bold text-neutral-700 bg-neutral-100 px-3 py-1.5 rounded-xl border border-neutral-200">Production Mode</span>
+        </div>
     </header>
 
-    <!-- Playground Workspace Canvas -->
-    <main class="max-w-6xl mx-auto px-6 pt-10 pb-16 w-full flex-grow grid lg:grid-cols-2 gap-8 items-stretch">
-        <!-- Input Console -->
-        <div class="bg-white border-2 border-neutral-200/80 rounded-3xl p-6 shadow-sm flex flex-col justify-between">
-            <div>
-                <h2 class="text-lg font-extrabold text-[#282C3F] mb-1">Developer Workspace Terminal</h2>
-                <p class="text-xs text-neutral-400 mb-4">Edit the structural block comments below to test the compilation results output matrix.</p>
-                <textarea id="liveCodeInput" class="w-full h-80 p-4 bg-neutral-900 text-neutral-200 font-mono text-xs rounded-2xl outline-none focus:ring-2 focus:ring-swiggy resize-none leading-relaxed">/**
- * @title Process Order Fulfillment
- * @description Schedules logistics handling and delivery handoff protocols securely for Swiggy distribution drivers.
- * @param deliveryId - The unique sequence string tracking the shipment package.
- */
-function assignDriver(deliveryId) {
-    return true;
-}</textarea>
-            </div>
-            <div class="mt-4 pt-4 border-t border-neutral-100 flex items-center justify-between">
-                <span class="text-xs text-neutral-400 font-medium">Runs instant local text extraction loops</span>
-                <button onclick="runLocalCompilation()" class="bg-swiggy hover:bg-swiggyDark text-white font-bold text-xs px-6 py-3 rounded-xl transition">Generate Live Docs ⚡</button>
-            </div>
-        </div>
+    <!-- Main Production Dashboard Workspace Matrix -->
+    <main class="max-w-7xl mx-auto px-6 pt-8 pb-16 w-full flex-grow grid lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- LEFT COLUMN: GITHUB CONNECTION GATEWAY & SETTINGS MANAGEMENT PANEL (4 Columns) -->
+        <div class="lg:col-span-4 flex flex-col gap-6 w-full">
+            
+            <!-- Secure OAuth GitHub Integration Control Box -->
+            <div class="bg-white border-2 border-neutral-200/80 rounded-3xl p-6 shadow-sm text-left">
+                <h2 class="text-base font-extrabold text-[#282C3F] mb-1">🔌 GitHub Infrastructure Integration</h2>
+                <p class="text-xs text-neutral-400 mb-4">Grant authorization layers via safe GitHub App channels to parse live project files securely.</p>
+                
+                <!-- Live Connect Button -->
+                <button id="authGithubBtn" onclick="executeProductionAuthLink()" class="w-full bg-[#24292F] hover:bg-[#24292F]/90 text-white font-bold text-xs px-5 py-3.5 rounded-xl transition flex items-center justify-center gap-2 shadow-md">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    Connect GitHub Account
+                </button>
 
-        <!-- Output Visual Box -->
-        <div class="bg-[#282C3F] text-white rounded-3xl p-6 shadow-xl flex flex-col justify-between relative overflow-hidden">
-            <div class="relative z-10 w-full h-full flex flex-col justify-between">
-                <div>
-                    <div class="flex justify-between items-center border-b border-white/10 pb-3 mb-6">
-                        <span class="text-xs font-bold text-swiggy uppercase tracking-wider">Live Documentation Display</span>
-                        <span class="text-[9px] bg-emerald-400/20 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono font-bold">Sync Active</span>
+                <!-- Active Target Status Framework Menu Section (Hidden initially) -->
+                <div id="repoSelectorSection" class="hidden mt-6 pt-5 border-t border-neutral-100 space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-neutral-500 mb-1.5 uppercase tracking-wide">Target Active Repository</label>
+                        <select id="repoDropdown" onchange="switchProductionRepoContext()" class="w-full text-xs font-semibold p-3 border border-neutral-200 rounded-xl bg-neutral-50 outline-none text-[#282C3F] focus:border-swiggy">
+                            <option value="none">— Select Production Repo —</option>
+                            <option value="Dharani-dotcom/docuflow-startup">Dharani-dotcom/docuflow-startup</option>
+                            <option value="acme-corp/payment-gateway">acme-corp/payment-gateway</option>
+                            <option value="alpha-tech/core-microservices">alpha-tech/core-microservices</option>
+                        </select>
                     </div>
-                    <div id="liveOutputSlot">
-                        <div class="p-6 bg-white border-2 border-neutral-100 rounded-2xl shadow-sm text-left text-neutral-800">
-                            <span class="text-[10px] bg-orange-100 text-[#FC8019] font-bold uppercase px-2 py-0.5 rounded-md">Live Endpoint</span>
-                            <h3 class="text-xl font-black text-[#282C3F] mt-2 mb-1">Process Order Fulfillment</h3>
-                            <p class="text-sm text-[#686B78] font-medium mb-3">Schedules logistics handling and delivery handoff protocols securely for Swiggy distribution drivers.</p>
-                            <div class="p-3 bg-neutral-50 rounded-xl font-mono text-xs text-neutral-600 border border-neutral-100"><strong>Param:</strong> deliveryId - The unique sequence string tracking the shipment package.</div>
-                        </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-neutral-500 mb-1.5 uppercase tracking-wide">Select Code Deployment Branch</label>
+                        <select id="branchDropdown" class="w-full text-xs font-semibold p-3 border border-neutral-200 rounded-xl bg-neutral-50 outline-none text-[#282C3F]">
+                            <option value="main">main</option>
+                            <option value="production">production</option>
+                            <option value="development">development</option>
+                        </select>
                     </div>
                 </div>
             </div>
+
+            <!-- Pipeline Status Metrics Tracking Log Card -->
+            <div class="bg-white border-2 border-neutral-200/80 rounded-3xl p-6 shadow-sm text-left">
+                <h2 class="text-base font-extrabold text-[#282C3F] mb-3">⏱️ Deployment Sync History</h2>
+                <div id="syncLogsContainer" class="space-y-3 font-mono text-[11px] text-neutral-400">
+                    <p class="italic text-neutral-400">No active repository linked to the tracking monitor logs.</p>
+                </div>
+            </div>
         </div>
-    </main>
 
-    <footer class="bg-[#02060C] text-white/40 px-12 py-5 text-center text-xs">
-        &copy; 2026 DocuFlow Inc. Multi-page layout infrastructure setups.
-    </footer>
+        <!-- RIGHT COLUMN: INTERACTIVE CODE SOURCE CONSOLE & DOCUMENTATION LIVE PREVIEW (8 Columns) -->
+        <div class="lg:col-span-8 w-full grid md:grid-cols-2 gap-6 items-stretch">
+            
+            <!-- Code Console Editor Input Frame -->
+            <div class="bg-white border-2 border-neutral-200/80 rounded-3xl p-6 shadow-sm flex flex-col justify-between min-h-[500px]">
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-neutral-400 uppercase tracking-wider flex items-center gap-1.5">📝 Production Workspace Editor</span>
+                        <span id="activeFileLabel" class="text-[10px] bg-neutral-100 px-2 py-0.5 rounded text-neutral-500 font-mono">api.js</span>
+                    </div>
+                    <p class="text-xs text-neutral-400 mb-4">Simulate pushing changes by adjusting the raw codebase string configuration arrays below.</p>
+                    
+                    <textarea id="liveCodeInput" class="w-full h-96 p-4 bg-neutral-900 text-neutral-200 font-mono text-xs rounded-2xl outline-none focus:ring-2 focus:ring-swiggy resize-none leading-relaxed shadow-inner">/**
+ * @title Secure Wallet Transfer API
+ * @description Processes instantaneous cross-border financial credit settlements over encrypted transaction layers.
+ * @param merchantId - The unique alphanumeric token referencing the corporate vendor account entity.
+ */
+function initiateWalletSettlement(merchantId) {
+    return true;
+}</textarea>
+                </div>
+                
+                <div class="mt-4 pt-4 border-t border-neutral-100 flex items-center justify-between">
+                    <span class="text-xs text-neutral-400 font-medium">Triggers automated background execution scripts</span>
+                    <button onclick="triggerCloudSyncSimulation()" class="bg-swiggy hover:bg-swiggyDark text-white font-extrabold text-xs px-6 py-3 rounded-xl transition shadow-md shadow-swiggy/10 active:scale-95">
+                        Trigger Push Sync 🚀
+                    </button>
+                </div>
+            </div>
 
-    <script>
-        function runLocalCompilation() {
-            const input = document.getElementById('liveCodeInput').value;
-            const output = document.getElementById('liveOutputSlot');
-            const regex = /\/\*\*([\s\(\S\)]*?)\*\//g; let match; let html = '';
-            while ((match = regex.exec(input)) !== null) {
-                const block = match[1];
-                const t = block.match(/@title\s+(.*)/); const d = block.match(/@description\s+(.*)/); const p = block.match(/@param\s+(.*)/);
-                if (!t) continue;
-                html += `<div class="p-6 bg-white border-2 border-neutral-100 rounded-2xl shadow-sm text-left text-neutral-800 mb-4">
-                    <span class="text-[10px] bg-orange-100 text-[#FC8019] font-bold uppercase px-2 py-0.5 rounded-md">Live Endpoint</span>
-                    <h3 class="text-xl font-black text-[#282C3F] mt-2 mb-1">${t[1].trim()}</h3>
-                    <p class="text-sm text-[#686B78] font-medium mb-3">${d ? d[1].trim() : "No text description."}</p>
-                    <div class="p-3 bg-neutral-50 rounded-xl font-mono text-xs text-neutral-600 border border-neutral-100"><strong>Param:</strong> ${p ? p[1].trim() : "None"}</div>
-                </div>`;
-            }
-            output.innerHTML = html || `<div class="p-4 bg-red-50 text-red-500 rounded-xl text-xs font-bold text-center">⚠️ No valid comment patterns found.</div>`;
-        }
-    </script>
-</body>
-</html>
+            <!-- Live Core App Documentation Visual Screen -->
+            <div class="bg-[#282C3F] text-white rounded-3xl p-6 shadow-xl flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none"></div>
+                
+                <div class="relative z-10 w-full h-full flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center border-b border-white/10 pb-3 mb-6">
+                            <span id="liveOutputLabel" class="text-xs font-bold text-swiggy uppercase tracking-wider font-mono">Live Display: Sandbox</span>
+                            <span id="activePulseBadge" class="text-[9px] bg-neutral-500/20 text-neutral-400 border border-white/10 px-2 py-0.5 rounded font-mono font-bold">Idle State</span>
+                        </div>
+                        
+                        <div id="liveOutputSlot" class="space-y-4">
+                            <!-- Default Box Block Component -->
+                            <div class="p-5 bg-white border-2 border-neutral-100 rounded-2xl shadow-sm text-left text-neutral-800">
+                                <span class="text-[10px] bg-orange-100 text-[#FC8019] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">Live Endpoint</span>
+                                <h3 class="text-xl font-black text-[#282C3F] mt-2 mb-1">Secure Wallet Transfer API</h3>
