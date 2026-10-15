@@ -25,15 +25,39 @@
     </script>
     <style>
         body { background-color: #FFFDFB; color: #3D4152; -webkit-font-smoothing: antialiased; }
+        
+        /* Advanced Custom CSS Keyframe System */
+        @keyframes gentleFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .css-floating-card {
+            animation: gentleFloat 5s ease-in-out infinite;
+        }
+
+        .css-glow-input:focus-within {
+            border-color: #FC8019;
+            box-shadow: 0 0 15px rgba(252, 128, 25, 0.2);
+        }
+
+        .css-interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .css-interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(252, 128, 25, 0.08);
+            border-color: rgba(252, 128, 25, 0.3);
+        }
     </style>
 </head>
 <body class="min-h-screen relative font-sans flex flex-col justify-between overflow-x-hidden">
 
     <!-- Swiggy Top Navigation Header Bar -->
-    <header class="bg-white border-b border-neutral-100 shadow-sm sticky top-0 z-50 px-6 md:px-16 py-4 flex items-center justify-between">
+    <header class="bg-white border-b border-neutral-100 shadow-sm sticky top-0 z-50 px-6 md:px-16 py-4 flex items-center justify-between transition-all duration-300">
         <div class="flex items-center gap-4 cursor-pointer group">
-            <!-- Swiggy-style icon shape -->
-            <div class="w-10 h-10 rounded-2xl bg-swiggy flex items-center justify-center font-extrabold text-white text-lg tracking-tighter shadow-md shadow-swiggy/20 group-hover:scale-105 transition-transform">
+            <div class="w-10 h-10 rounded-2xl bg-swiggy flex items-center justify-center font-extrabold text-white text-lg tracking-tighter shadow-md shadow-swiggy/20 group-hover:rotate-6 transition-transform duration-300">
                 DF
             </div>
             <div>
@@ -43,20 +67,20 @@
         </div>
         
         <nav class="hidden md:flex gap-10 text-sm font-semibold text-[#3D4152]">
-            <a href="#" class="hover:text-swiggy transition-colors flex items-center gap-1.5">⚡ Features</a>
-            <a href="#" class="hover:text-swiggy transition-colors flex items-center gap-1.5">🏷️ Pricing</a>
-            <a href="#" class="hover:text-swiggy transition-colors flex items-center gap-1.5">🚀 Integrations</a>
+            <a href="#" class="hover:text-swiggy transition-colors duration-200 flex items-center gap-1.5">⚡ Features</a>
+            <a href="#" class="hover:text-swiggy transition-colors duration-200 flex items-center gap-1.5">🏷️ Pricing</a>
+            <a href="#" class="hover:text-swiggy transition-colors duration-200 flex items-center gap-1.5">🚀 Integrations</a>
         </nav>
         
         <div class="flex items-center gap-4">
-            <a href="/index.html" class="text-sm font-bold text-[#3D4152] hover:text-swiggy transition">Sign In</a>
-            <button class="bg-swiggy text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-swiggyDark active:scale-95 transition-all shadow-md shadow-swiggy/10">Find Repository</button>
+            <a href="/index.html" class="text-sm font-bold text-[#3D4152] hover:text-swiggy transition-colors duration-200">Sign In</a>
+            <button class="bg-swiggy text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-swiggyDark hover:shadow-lg hover:shadow-swiggy/20 active:scale-95 transition-all duration-200">Find Repository</button>
         </div>
     </header>
 
     <!-- Main Hero Canvas Layout -->
     <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 relative z-10 w-full">
-        <div class="grid md:grid-cols-12 gap-8 items-center mb-16">
+        <div class="grid md:grid-cols-12 gap-12 items-center mb-16">
             
             <!-- Hero Left Copy Panel -->
             <div class="md:col-span-7 text-left">
@@ -67,23 +91,23 @@
                     Order automated document updates straight from your repository comments. Delivered fresh to the web in under 45 seconds.
                 </p>
 
-                <!-- Swiggy Style Search/CTA Input Box -->
-                <div class="bg-white border-2 border-neutral-200/80 rounded-2xl p-2 flex flex-col sm:flex-row items-center gap-2 max-w-lg shadow-md hover:border-swiggy/40 transition-colors">
+                <!-- CSS Enhanced Input Bar Box -->
+                <div class="css-glow-input bg-white border-2 border-neutral-200 rounded-2xl p-2 flex flex-col sm:flex-row items-center gap-2 max-w-lg shadow-md transition-all duration-300">
                     <div class="flex items-center gap-2 px-3 w-full border-b sm:border-b-0 sm:border-r border-neutral-100 py-2 sm:py-0">
                         <span class="text-lg">💻</span>
                         <input type="text" placeholder="Enter GitHub Repository URL..." class="w-full text-sm font-medium outline-none text-[#282C3F] bg-transparent placeholder-neutral-400">
                     </div>
-                    <a href="https://stripe.com" class="w-full sm:w-auto bg-swiggy hover:bg-swiggyDark text-white font-bold text-sm px-6 py-3.5 rounded-xl transition text-center whitespace-nowrap active:scale-[0.98]">
+                    <a href="https://stripe.com" class="w-full sm:w-auto bg-swiggy hover:bg-swiggyDark text-white font-bold text-sm px-6 py-3.5 rounded-xl transition-all duration-200 hover:shadow-md text-center whitespace-nowrap active:scale-[0.98]">
                         Order Docs ($39)
                     </a>
                 </div>
             </div>
 
-            <!-- Hero Right Promo Visual Card -->
-            <div class="md:col-span-5 bg-gradient-to-br from-orange-50 to-orange-100/50 border border-orange-200/40 rounded-3xl p-8 relative overflow-hidden shadow-inner text-left">
+            <!-- Hero Right Promo Visual Card (Floating via CSS) -->
+            <div class="md:col-span-5 css-floating-card bg-gradient-to-br from-orange-50 to-orange-100/40 border border-orange-200/60 rounded-3xl p-8 relative overflow-hidden shadow-lg text-left">
                 <div class="absolute -top-10 -right-10 w-40 h-40 bg-swiggy/5 rounded-full blur-2xl"></div>
-                <span class="bg-swiggy/10 text-swiggy font-bold text-[10px] tracking-widest uppercase px-2.5 py-1 rounded-md border border-swiggy/10">Hot Deal</span>
-                <h3 class="text-2xl font-extrabold text-[#282C3F] mt-3 mb-1">Developer Subscription</h3>
+                <span class="bg-swiggy/10 text-swiggy font-bold text-[10px] tracking-widest uppercase px-2.5 py-1 rounded-md border border-swiggy/20">Hot Deal</span>
+                <h3 class="text-2xl font-extrabold text-[#282C3F] mt-3 mb-1">Developer Plan</h3>
                 <p class="text-xs text-[#686B78] mb-6 font-medium">Unlimited code parsing sync loops served straight to the edge.</p>
                 
                 <div class="flex items-baseline gap-1.5 mb-6">
@@ -92,21 +116,20 @@
                 </div>
 
                 <div class="space-y-3.5 border-t border-orange-200/60 pt-5 text-sm font-medium text-[#3D4152]">
-                    <div class="flex items-center gap-3">✨ <span class="opacity-90">Instant GitHub Push Sync</span></div>
-                    <div class="flex items-center gap-3">🚀 <span class="opacity-90">Custom Domain Serving</span></div>
-                    <div class="flex items-center gap-3">📦 <span class="opacity-90">Unlimited Public Endpoints</span></div>
+                    <div class="flex items-center gap-3 transform hover:translate-x-1 transition-transform duration-200">✨ <span class="opacity-90">Instant GitHub Push Sync</span></div>
+                    <div class="flex items-center gap-3 transform hover:translate-x-1 transition-transform duration-200">🚀 <span class="opacity-90">Custom Domain Serving</span></div>
+                    <div class="flex items-center gap-3 transform hover:translate-x-1 transition-transform duration-200">📦 <span class="opacity-90">Unlimited Public Endpoints</span></div>
                 </div>
             </div>
         </div>
 
         <!-- Dynamic Real-Time Calculator Banner Panel -->
-        <div class="bg-[#282C3F] text-white rounded-3xl p-8 md:p-10 shadow-xl grid md:grid-cols-12 gap-8 items-center text-left relative overflow-hidden">
-            <div class="absolute right-0 bottom-0 top-0 w-1/3 bg-gradient-to-l from-white/5 to-transparent pointer-events-none"></div>
+        <div class="bg-[#282C3F] text-white rounded-3xl p-8 md:p-10 shadow-xl grid md:grid-cols-12 gap-8 items-center text-left relative overflow-hidden border border-white/5">
             
             <div class="md:col-span-7">
                 <span class="text-swiggy font-bold text-xs uppercase tracking-wider">ROI Processing Engine</span>
                 <h2 class="text-3xl font-extrabold text-white mt-1 mb-2 tracking-tight">Calculate your engineering appetite</h2>
-                <p class="text-sm text-neutral-300 font-medium max-w-md">Slide the dial to see exactly how many hours of manual code manual writing we recover for your business.</p>
+                <p class="text-sm text-neutral-300 font-medium max-w-md">Slide the dial to see exactly how many hours of manual code writing we recover for your business.</p>
                 
                 <div class="my-6 max-w-md">
                     <div class="flex justify-between items-center mb-2">
@@ -118,11 +141,11 @@
             </div>
 
             <div class="md:col-span-5 grid grid-cols-2 gap-4 text-center border-t md:border-t-0 md:border-l border-white/10 pt-6 md:pt-0 md:pl-8">
-                <div class="bg-white/5 border border-white/5 p-4 rounded-2xl">
+                <div class="bg-white/5 border border-white/5 p-4 rounded-2xl hover:bg-white/10 transition-colors duration-200">
                     <div class="text-[10px] text-neutral-400 uppercase font-extrabold tracking-wider">Hours Saved / mo</div>
                     <div id="hoursSaved" class="text-3xl font-black text-white mt-1 font-mono">20 hrs</div>
                 </div>
-                <div class="bg-white/5 border border-white/5 p-4 rounded-2xl">
+                <div class="bg-white/5 border border-white/5 p-4 rounded-2xl hover:bg-white/10 transition-colors duration-200">
                     <div class="text-[10px] text-neutral-400 uppercase font-extrabold tracking-wider">Capital Recovered</div>
                     <div id="moneySaved" class="text-3xl font-black text-emerald-400 mt-1 font-mono">$1,500</div>
                 </div>
@@ -133,31 +156,3 @@
     <!-- Simple Corporate Swiggy Style Footer -->
     <footer class="bg-[#02060C] text-white/50 px-6 md:px-16 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium">
         <div class="flex items-center gap-2">
-            <span class="font-extrabold text-white text-sm">DocuFlow Inc.</span>
-            <span class="text-neutral-600">|</span>
-            <span>Continuous Infrastructure Systems &copy; 2026</span>
-        </div>
-        <div class="flex gap-6">
-            <a href="#" class="hover:text-white transition">Terms of Service</a>
-            <a href="#" class="hover:text-white transition">Privacy Architecture</a>
-        </div>
-    </footer>
-
-    <!-- Script Calculation Operations Logic -->
-    <script>
-        const slider = document.getElementById('devSlider');
-        const devCount = document.getElementById('devCount');
-        const hoursSaved = document.getElementById('hoursSaved');
-        const moneySaved = document.getElementById('moneySaved');
-
-        slider.addEventListener('input', (e) => {
-            const devs = e.target.value;
-            devCount.textContent = devs;
-            const hours = devs * 4;
-            hoursSaved.textContent = hours + ' hrs';
-            const cash = hours * 75;
-            moneySaved.textContent = '$' + cash.toLocaleString();
-        });
-    </script>
-</body>
-</html>
