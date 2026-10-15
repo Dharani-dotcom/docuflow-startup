@@ -3,132 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DocuFlow — Continuous API Documentation Platforms</title>
+    <title>DocuFlow — Instant Documentation Delivery Pipeline</title>
     <script src="https://tailwindcss.com"></script>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    colors: {
+                        swiggy: '#FC8019',
+                        swiggyDark: '#E06F12',
+                    },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #F8F9FA; color: #4A4A4A; -webkit-font-smoothing: antialiased; }
-        .grid-mask { mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 80%, transparent 100%); }
+        body { background-color: #FFFDFB; color: #3D4152; -webkit-font-smoothing: antialiased; }
     </style>
 </head>
 <body class="min-h-screen relative font-sans flex flex-col justify-between overflow-x-hidden">
 
-    <!-- Minimal Subtle Grid & Underlay -->
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:40px_40px] grid-mask pointer-events-none"></div>
-
-    <!-- Navigation Header Bar -->
-    <header class="border-b border-black/[0.04] backdrop-blur-md bg-white/70 sticky top-0 z-50 px-6 md:px-12 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-3 cursor-pointer group">
-            <div class="w-6 h-6 rounded bg-[#107B45] flex items-center justify-center font-bold text-white text-xs shadow-sm">D</div>
-            <span class="text-neutral-900 font-semibold tracking-tight text-sm">DocuFlow</span>
+    <!-- Swiggy Top Navigation Header Bar -->
+    <header class="bg-white border-b border-neutral-100 shadow-sm sticky top-0 z-50 px-6 md:px-16 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-4 cursor-pointer group">
+            <!-- Swiggy-style icon shape -->
+            <div class="w-10 h-10 rounded-2xl bg-swiggy flex items-center justify-center font-extrabold text-white text-lg tracking-tighter shadow-md shadow-swiggy/20 group-hover:scale-105 transition-transform">
+                DF
+            </div>
+            <div>
+                <span class="text-neutral-900 font-extrabold tracking-tight text-xl block">DocuFlow</span>
+                <span class="text-[10px] text-swiggy font-bold uppercase tracking-widest block -mt-1">Instant Delivery</span>
+            </div>
         </div>
-        <nav class="hidden md:flex gap-8 text-xs font-medium text-neutral-500 tracking-wide">
-            <a href="#" class="hover:text-[#107B45] transition-colors">Products</a>
-            <a href="#" class="hover:text-[#107B45] transition-colors">Pricing</a>
-            <a href="#" class="hover:text-[#107B45] transition-colors">Resources</a>
+        
+        <nav class="hidden md:flex gap-10 text-sm font-semibold text-[#3D4152]">
+            <a href="#" class="hover:text-swiggy transition-colors flex items-center gap-1.5">⚡ Features</a>
+            <a href="#" class="hover:text-swiggy transition-colors flex items-center gap-1.5">🏷️ Pricing</a>
+            <a href="#" class="hover:text-swiggy transition-colors flex items-center gap-1.5">🚀 Integrations</a>
         </nav>
-        <div>
-            <button class="bg-[#107B45] text-white text-xs font-medium px-4 py-2 rounded-md hover:bg-[#0b5c33] active:scale-95 transition-all shadow-sm">Get started</button>
+        
+        <div class="flex items-center gap-4">
+            <a href="/index.html" class="text-sm font-bold text-[#3D4152] hover:text-swiggy transition">Sign In</a>
+            <button class="bg-swiggy text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-swiggyDark active:scale-95 transition-all shadow-md shadow-swiggy/10">Find Repository</button>
         </div>
     </header>
 
-    <!-- Hero Content Layout -->
-    <main class="max-w-5xl mx-auto px-6 pt-28 pb-24 text-center relative z-10">
-        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-neutral-900 mb-6 max-w-3xl mx-auto leading-[1.1]">
-            Accurate documentation built for smarter work
-        </h1>
-        
-        <p class="text-base md:text-lg text-neutral-500 max-w-xl mx-auto mb-12 font-normal leading-relaxed">
-            Meet documentation pipelines purpose-built for professionals to enhance every repository workflow automatically.
-        </p>
+    <!-- Main Hero Canvas Layout -->
+    <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 relative z-10 w-full">
+        <div class="grid md:grid-cols-12 gap-8 items-center mb-16">
+            
+            <!-- Hero Left Copy Panel -->
+            <div class="md:col-span-7 text-left">
+                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-[#282C3F] mb-6 leading-[1.1]">
+                    Hungry for clean code <br><span class="text-swiggy">documentation?</span>
+                </h1>
+                <p class="text-lg text-[#686B78] max-w-xl mb-8 leading-relaxed font-medium">
+                    Order automated document updates straight from your repository comments. Delivered fresh to the web in under 45 seconds.
+                </p>
 
-        <!-- CTA Operations Button Groups -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-            <a href="/index.html" class="w-full sm:w-auto bg-[#107B45] text-white text-xs font-semibold px-6 py-3 rounded-lg shadow-sm hover:bg-[#0b5c33] active:scale-[0.98] transition-all text-center">
-                Get started free →
-            </a>
-            <a href="https://stripe.com" class="w-full sm:w-auto bg-white border border-neutral-200 text-neutral-800 hover:bg-neutral-50 text-xs font-semibold px-6 py-3 rounded-lg active:scale-[0.98] transition-all text-center shadow-sm">
-                View Pricing Framework
-            </a>
+                <!-- Swiggy Style Search/CTA Input Box -->
+                <div class="bg-white border-2 border-neutral-200/80 rounded-2xl p-2 flex flex-col sm:flex-row items-center gap-2 max-w-lg shadow-md hover:border-swiggy/40 transition-colors">
+                    <div class="flex items-center gap-2 px-3 w-full border-b sm:border-b-0 sm:border-r border-neutral-100 py-2 sm:py-0">
+                        <span class="text-lg">💻</span>
+                        <input type="text" placeholder="Enter GitHub Repository URL..." class="w-full text-sm font-medium outline-none text-[#282C3F] bg-transparent placeholder-neutral-400">
+                    </div>
+                    <a href="https://stripe.com" class="w-full sm:w-auto bg-swiggy hover:bg-swiggyDark text-white font-bold text-sm px-6 py-3.5 rounded-xl transition text-center whitespace-nowrap active:scale-[0.98]">
+                        Order Docs ($39)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Right Promo Visual Card -->
+            <div class="md:col-span-5 bg-gradient-to-br from-orange-50 to-orange-100/50 border border-orange-200/40 rounded-3xl p-8 relative overflow-hidden shadow-inner text-left">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-swiggy/5 rounded-full blur-2xl"></div>
+                <span class="bg-swiggy/10 text-swiggy font-bold text-[10px] tracking-widest uppercase px-2.5 py-1 rounded-md border border-swiggy/10">Hot Deal</span>
+                <h3 class="text-2xl font-extrabold text-[#282C3F] mt-3 mb-1">Developer Subscription</h3>
+                <p class="text-xs text-[#686B78] mb-6 font-medium">Unlimited code parsing sync loops served straight to the edge.</p>
+                
+                <div class="flex items-baseline gap-1.5 mb-6">
+                    <span class="text-4xl font-extrabold text-neutral-900 font-mono tracking-tight">$39</span>
+                    <span class="text-xs text-[#686B78] font-bold">/ monthly base menu</span>
+                </div>
+
+                <div class="space-y-3.5 border-t border-orange-200/60 pt-5 text-sm font-medium text-[#3D4152]">
+                    <div class="flex items-center gap-3">✨ <span class="opacity-90">Instant GitHub Push Sync</span></div>
+                    <div class="flex items-center gap-3">🚀 <span class="opacity-90">Custom Domain Serving</span></div>
+                    <div class="flex items-center gap-3">📦 <span class="opacity-90">Unlimited Public Endpoints</span></div>
+                </div>
+            </div>
         </div>
 
-        <!-- 3-Column Enterprise Feature Blocks (Liner Grid Style) -->
-        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+        <!-- Dynamic Real-Time Calculator Banner Panel -->
+        <div class="bg-[#282C3F] text-white rounded-3xl p-8 md:p-10 shadow-xl grid md:grid-cols-12 gap-8 items-center text-left relative overflow-hidden">
+            <div class="absolute right-0 bottom-0 top-0 w-1/3 bg-gradient-to-l from-white/5 to-transparent pointer-events-none"></div>
             
-            <!-- Card 1: Core Engine Integration -->
-            <div class="border border-neutral-200/80 bg-white rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300">
-                <div>
-                    <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-wider font-bold">Continuous Scrape</span>
-                    <h3 class="text-xl font-bold text-neutral-900 mt-1 mb-2">DocuFlow Engine</h3>
-                    <p class="text-xs text-neutral-500 leading-relaxed">Automatically parses incoming git push payloads directly into markdown.</p>
-                </div>
-                <div class="mt-6 border-t border-neutral-100 pt-4">
-                    <a href="/index.html" class="text-xs font-semibold text-[#107B45] hover:underline inline-flex items-center gap-1">Get started →</a>
+            <div class="md:col-span-7">
+                <span class="text-swiggy font-bold text-xs uppercase tracking-wider">ROI Processing Engine</span>
+                <h2 class="text-3xl font-extrabold text-white mt-1 mb-2 tracking-tight">Calculate your engineering appetite</h2>
+                <p class="text-sm text-neutral-300 font-medium max-w-md">Slide the dial to see exactly how many hours of manual code manual writing we recover for your business.</p>
+                
+                <div class="my-6 max-w-md">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs text-neutral-300 font-bold">Team Engineering Scale</span>
+                        <span class="text-xs font-mono text-swiggy font-black bg-swiggy/10 border border-swiggy/20 px-2.5 py-0.5 rounded-lg"><span id="devCount">5</span> developers</span>
+                    </div>
+                    <input type="range" id="devSlider" min="1" max="50" value="5" class="w-full accent-swiggy bg-white/10 h-1.5 rounded-lg appearance-none cursor-pointer">
                 </div>
             </div>
 
-            <!-- Card 2: Interactive Dynamic Calculator Tool -->
-            <div class="border border-neutral-200/80 bg-white rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300">
-                <div>
-                    <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-wider font-bold">Operational ROI</span>
-                    <h3 class="text-xl font-bold text-neutral-900 mt-1 mb-2">Savings Analyzer</h3>
-                    
-                    <div class="my-4">
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-[11px] text-neutral-400 font-medium">Team Scale</span>
-                            <span class="text-xs font-mono text-[#107B45] font-bold"><span id="devCount">5</span> devs</span>
-                        </div>
-                        <input type="range" id="devSlider" min="1" max="50" value="5" class="w-full accent-[#107B45] bg-neutral-100 h-1 rounded-lg appearance-none cursor-pointer">
-                    </div>
+            <div class="md:col-span-5 grid grid-cols-2 gap-4 text-center border-t md:border-t-0 md:border-l border-white/10 pt-6 md:pt-0 md:pl-8">
+                <div class="bg-white/5 border border-white/5 p-4 rounded-2xl">
+                    <div class="text-[10px] text-neutral-400 uppercase font-extrabold tracking-wider">Hours Saved / mo</div>
+                    <div id="hoursSaved" class="text-3xl font-black text-white mt-1 font-mono">20 hrs</div>
                 </div>
-
-                <div class="border-t border-neutral-100 pt-4 flex justify-between items-center text-center">
-                    <div>
-                        <div class="text-[9px] text-neutral-400 uppercase font-semibold">Hours Freed</div>
-                        <div id="hoursSaved" class="text-sm font-bold text-neutral-900 font-mono">20 hrs</div>
-                    </div>
-                    <div>
-                        <div class="text-[9px] text-neutral-400 uppercase font-semibold">Value Saved</div>
-                        <div id="moneySaved" class="text-sm font-bold text-[#107B45] font-mono">$1,500</div>
-                    </div>
+                <div class="bg-white/5 border border-white/5 p-4 rounded-2xl">
+                    <div class="text-[10px] text-neutral-400 uppercase font-extrabold tracking-wider">Capital Recovered</div>
+                    <div id="moneySaved" class="text-3xl font-black text-emerald-400 mt-1 font-mono">$1,500</div>
                 </div>
             </div>
-
-            <!-- Card 3: System Hosting Layer -->
-            <div class="border border-neutral-200/80 bg-white rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300">
-                <div>
-                    <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-wider font-bold">Production Edge</span>
-                    <h3 class="text-xl font-bold text-neutral-900 mt-1 mb-2">DocuFlow Server</h3>
-                    <p class="text-xs text-neutral-500 leading-relaxed">Deploys edge architecture with sub-millisecond compilation loads globally.</p>
-                </div>
-                <div class="mt-6 border-t border-neutral-100 pt-4">
-                    <a href="https://stripe.com" class="text-xs font-semibold text-[#107B45] hover:underline inline-flex items-center gap-1">Get started ($39) →</a>
-                </div>
-            </div>
-
         </div>
     </main>
 
-    <!-- Simple Corporate Footer -->
-    <footer class="border-t border-neutral-200/60 bg-white px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
-        <div>&copy; 2026 DocuFlow Inc. Built for technical workflows.</div>
+    <!-- Simple Corporate Swiggy Style Footer -->
+    <footer class="bg-[#02060C] text-white/50 px-6 md:px-16 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium">
+        <div class="flex items-center gap-2">
+            <span class="font-extrabold text-white text-sm">DocuFlow Inc.</span>
+            <span class="text-neutral-600">|</span>
+            <span>Continuous Infrastructure Systems &copy; 2026</span>
+        </div>
         <div class="flex gap-6">
-            <a href="#" class="hover:text-neutral-600 transition-colors">Privacy</a>
-            <a href="#" class="hover:text-neutral-600 transition-colors">Terms</a>
+            <a href="#" class="hover:text-white transition">Terms of Service</a>
+            <a href="#" class="hover:text-white transition">Privacy Architecture</a>
         </div>
     </footer>
 
