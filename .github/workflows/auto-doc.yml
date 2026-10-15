@@ -1,0 +1,29 @@
+name: Continuous Documentation Engine
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run DocuFlow Engine
+        run: node parser.js
+
+      - name: Commit Updated Documentation
+        run: |
+          git config --global user.name "DocuFlow Bot"
+          git config --global user.email "bot@docuflow.com"
+          git add public/
+          git commit -m "docs: automatically modernised documentation [skip ci]" || echo "No changes to commit"
+          git push
