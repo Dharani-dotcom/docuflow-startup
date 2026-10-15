@@ -23,24 +23,48 @@
     <style>
         body { background-color: #030303; color: #b5b5b5; -webkit-font-smoothing: antialiased; }
         .linear-mask { mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%); }
+        
+        /* Shimmer Beam Animation */
+        @keyframes border-beam {
+            0% { offset-distance: 0%; }
+            100% { offset-distance: 100%; }
+        }
+        .animate-beam {
+            position: absolute;
+            inset: 0;
+            border: 1px solid transparent;
+            border-radius: inherit;
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        .animate-beam::after {
+            content: "";
+            position: absolute;
+            aspect-ratio: 1;
+            width: 100px;
+            background: linear-gradient(to right, #a855f7, #6366f1);
+            offset-path: rect(0 100% 100% 0 round 12px);
+            animation: border-beam 4s linear infinite;
+        }
     </style>
 </head>
 <body class="min-h-screen relative font-sans flex flex-col justify-between overflow-x-hidden">
 
-    <!-- Ambient Grid & Glow (Linear Look) -->
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px] linear-mask pointer-events-none"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <!-- Ambient Grid & Dynamic Radial Glow -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:40px_40px] linear-mask pointer-events-none"></div>
+    <div id="ambientGlow" class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-purple-500/5 rounded-full blur-[130px] pointer-events-none transition-all duration-700 ease-out"></div>
 
-    <!-- Professional Navigation Menu Bar -->
-    <header class="border-b border-white/[0.06] backdrop-blur-md bg-black/40 sticky top-0 z-50 px-6 md:px-12 py-3.5 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-700 flex items-center justify-center font-bold text-white text-sm shadow-md shadow-indigo-500/20">D</div>
-            <span class="text-white font-semibold tracking-tight text-sm">DocuFlow</span>
+    <!-- Sticky Navigation Panel -->
+    <header class="border-b border-white/[0.04] backdrop-blur-md bg-black/40 sticky top-0 z-50 px-6 md:px-12 py-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-3 group cursor-pointer">
+            <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center font-bold text-white text-sm shadow-md group-hover:scale-105 transition-transform duration-300">D</div>
+            <span class="text-white font-semibold tracking-tight text-sm group-hover:text-purple-400 transition-colors">DocuFlow</span>
         </div>
-        <nav class="hidden md:flex gap-8 text-xs font-medium text-white/50 tracking-wide">
-            <a href="#" class="hover:text-white transition-colors duration-200">Features</a>
+        <nav class="hidden md:flex gap-8 text-xs font-medium text-white/40 tracking-wide">
+            <a href="#" class="hover:text-white transition-colors duration-200 relative after:absolute after:bottom-[-18px] after:left-0 after:w-full after:h-[1px] after:bg-purple-500 after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Features</a>
             <a href="#" class="hover:text-white transition-colors duration-200">Pricing</a>
-            <a href="#" class="hover:text-white transition-colors duration-200">Integrations</a>
             <a href="#" class="hover:text-white transition-colors duration-200">Changelog</a>
         </nav>
         <div>
@@ -48,14 +72,14 @@
         </div>
     </header>
 
-    <!-- Professional Hero Area -->
+    <!-- Main Hero Canvas -->
     <main class="max-w-5xl mx-auto px-6 pt-32 pb-24 text-center relative z-10">
-        <span class="inline-flex items-center gap-2 bg-neutral-900 border border-white/[0.08] text-white/80 text-[11px] px-3 py-1 rounded-full font-medium tracking-wide mb-8 shadow-inner">
-            <span class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
+        <span class="inline-flex items-center gap-2 bg-neutral-900/80 border border-white/[0.06] text-white/70 text-[11px] px-3 py-1 rounded-full font-medium tracking-wide mb-8 shadow-lg hover:border-purple-500/30 transition-colors duration-300 cursor-default">
+            <span class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-ping"></span>
             Continuous Developer Infrastructure
         </span>
         
-        <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 max-w-3xl mx-auto leading-[1.05] bg-gradient-to-b from-white via-white to-white/40 bg-clip-text text-transparent">
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 max-w-3xl mx-auto leading-[1.05] bg-gradient-to-b from-white via-white to-white/30 bg-clip-text text-transparent">
             Documentation that writes itself.
         </h1>
         
@@ -63,52 +87,53 @@
             DocuFlow securely syncs with your GitHub repository, parses structured code comments, and compiles beautiful, dark-themed production documentation automatically.
         </p>
 
-        <!-- Premium CTA Layout -->
+        <!-- Reactive Call To Actions -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-24">
-            <a href="/index.html" class="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs font-medium px-6 py-3 rounded-lg shadow-lg shadow-purple-500/10 hover:opacity-95 transition active:scale-[0.98] duration-150 text-center font-semibold">
+            <a href="/index.html" class="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs font-medium px-6 py-3 rounded-lg shadow-xl shadow-purple-500/10 hover:shadow-purple-500/20 active:scale-[0.98] transition-all duration-200 text-center font-semibold">
                 Explore Dashboard Demo
             </a>
-            <a href="https://stripe.com" class="w-full sm:w-auto bg-neutral-900 border border-white/[0.08] text-white hover:bg-neutral-800 text-xs font-medium px-6 py-3 rounded-lg transition active:scale-[0.98] duration-150 text-center font-semibold">
+            <a href="https://stripe.com" class="w-full sm:w-auto bg-neutral-900 border border-white/[0.06] hover:border-white/20 text-white text-xs font-medium px-6 py-3 rounded-lg active:scale-[0.98] transition-all duration-200 text-center font-semibold">
                 Connect GitHub Repository ($39/mo)
             </a>
         </div>
 
-        <!-- Two Column Grid for Features & Dynamic ROI Tool -->
+        <!-- Proximity-Aware Bento Grid Setup -->
         <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch text-left">
             
-            <!-- Real-Time ROI Savings Component -->
-            <div class="border border-white/[0.06] bg-[#0a0a0a]/80 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden">
-                <div>
+            <!-- Proximity Spotlight Card 1: Calculator -->
+            <div class="spotlight-card border border-white/[0.06] bg-neutral-900/20 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-white/[0.12]">
+                <div class="animate-beam"></div>
+                <div class="relative z-10">
                     <h3 class="text-sm font-semibold text-white mb-1">Calculate Engineering Value</h3>
                     <p class="text-xs text-white/40 mb-6">See how much operational debt you recover automatically.</p>
                     
                     <div class="mb-6">
                         <div class="flex justify-between items-center mb-2">
                             <label class="text-xs text-white/60 font-medium">Core Engineering Team Size</label>
-                            <span class="text-xs font-mono text-purple-400 font-bold bg-purple-500/10 px-2 py-0.5 rounded"><span id="devCount">5</span> devs</span>
+                            <span id="devCountBadge" class="text-xs font-mono text-purple-400 font-bold bg-purple-500/10 px-2 py-0.5 rounded transition-all duration-300 scale-100"><span id="devCount">5</span> devs</span>
                         </div>
-                        <input type="range" id="devSlider" min="1" max="50" value="5" class="w-full accent-purple-500 bg-white/5 h-1 rounded-lg appearance-none cursor-pointer">
+                        <input type="range" id="devSlider" min="1" max="50" value="5" class="w-full accent-purple-500 bg-white/5 h-1 rounded-lg appearance-none cursor-pointer group">
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 border-t border-white/[0.06] pt-5 text-center bg-neutral-950/40 -mx-6 -mb-6 p-6 rounded-b-xl">
+                <div class="grid grid-cols-2 gap-4 border-t border-white/[0.04] pt-5 text-center bg-neutral-950/20 -mx-6 -mb-6 p-6 rounded-b-xl relative z-10">
                     <div>
                         <div class="text-[10px] text-white/40 uppercase tracking-wider font-semibold">Hours Saved / mo</div>
-                        <div id="hoursSaved" class="text-2xl font-bold text-white tracking-tight mt-0.5 font-mono">20 hrs</div>
+                        <div id="hoursSaved" class="text-2xl font-bold text-white tracking-tight mt-0.5 font-mono transition-all duration-200">20 hrs</div>
                     </div>
                     <div>
                         <div class="text-[10px] text-white/40 uppercase tracking-wider font-semibold">Capital Recovered</div>
-                        <div id="moneySaved" class="text-2xl font-bold text-emerald-400 tracking-tight mt-0.5 font-mono">$1,500</div>
+                        <div id="moneySaved" class="text-2xl font-bold text-emerald-400 tracking-tight mt-0.5 font-mono transition-all duration-200">$1,500</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Professional Transparent Pricing Framework Box -->
-            <div class="border border-white/[0.06] bg-[#0a0a0a]/80 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden">
-                <div>
+            <!-- Proximity Spotlight Card 2: Interactive Pricing Framework -->
+            <div class="spotlight-card border border-white/[0.06] bg-neutral-900/20 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-white/[0.12]">
+                <div class="relative z-10">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="text-sm font-semibold text-white">Startup Growth Tier</h3>
-                        <span class="bg-indigo-500/10 text-indigo-400 font-mono text-[9px] font-bold tracking-widest uppercase px-2 py-0.5 rounded border border-indigo-500/10">Popular</span>
+                        <span class="bg-indigo-500/10 text-indigo-400 font-mono text-[9px] font-bold tracking-widest uppercase px-2 py-0.5 rounded border border-indigo-500/10 animate-pulse">Popular</span>
                     </div>
                     <p class="text-xs text-white/40 mb-4">Complete production setup for scaling software teams.</p>
                     <div class="flex items-baseline gap-1.5 my-4">
@@ -117,35 +142,7 @@
                     </div>
                 </div>
 
-                <ul class="text-xs text-white/60 space-y-3 border-t border-white/[0.06] pt-5">
-                    <li class="flex items-center gap-2.5">
+                <ul class="text-xs text-white/60 space-y-3 border-t border-white/[0.04] pt-5 relative z-10">
+                    <li class="flex items-center gap-2.5 hover:text-white transition-colors duration-150">
                         <svg class="w-3.5 h-3.5 text-purple-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                        Unlimited production repository scraping
-                    </li>
-                    <li class="flex items-center gap-2.5">
-                        <svg class="w-3.5 h-3.5 text-purple-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                        Custom branding controls + custom domain setup
-                    </li>
-                    <li class="flex items-center gap-2.5">
-                        <svg class="w-3.5 h-3.5 text-purple-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                        Automated edge sync with GitHub Actions
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- Professional Footer -->
-    <footer class="border-t border-white/[0.04] bg-neutral-950/40 px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/30">
-        <div>&copy; 2026 DocuFlow Inc. Immutable pipeline systems.</div>
-        <div class="flex gap-6">
-            <a href="#" class="hover:text-white/50 transition">Security Protocol</a>
-            <a href="#" class="hover:text-white/50 transition">Terms of Service</a>
-        </div>
-    </footer>
-
-    <!-- Script Layer for Slider Integration -->
-    <script>
-        const slider = document.getElementById('devSlider');
-        const devCount = document.getElementById('devCount');
+                        Unlimited repository mapping
