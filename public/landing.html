@@ -5,150 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DocuFlow — Instant Documentation Delivery Pipeline</title>
     <script src="https://tailwindcss.com"></script>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        swiggy: '#FC8019',
-                        swiggyDark: '#E06F12',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { colors: { swiggy: '#FC8019', swiggyDark: '#E06F12' }, fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
     </script>
-    <style>
-        body { background-color: #FFFDFB; color: #3D4152; -webkit-font-smoothing: antialiased; }
-        .css-glow-input:focus-within {
-            border-color: #FC8019;
-            box-shadow: 0 0 15px rgba(252, 128, 25, 0.15);
-        }
-    </style>
+    <style>body { background-color: #FFFDFB; color: #3D4152; }</style>
 </head>
-<body class="min-h-screen font-sans flex flex-col justify-between overflow-x-hidden">
+<body class="min-h-screen font-sans flex flex-col justify-between">
 
-    <!-- Swiggy Top Navigation Header Bar -->
-    <header class="bg-white border-b border-neutral-100 shadow-sm sticky top-0 z-50 px-6 md:px-16 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-4 cursor-pointer group">
-            <div class="w-10 h-10 rounded-2xl bg-swiggy flex items-center justify-center font-extrabold text-white text-lg shadow-md shadow-swiggy/20 group-hover:rotate-6 transition-all duration-300">
-                DF
-            </div>
-            <div>
-                <span class="text-neutral-900 font-extrabold tracking-tight text-xl block">DocuFlow</span>
-                <span class="text-[10px] text-swiggy font-bold uppercase tracking-widest block -mt-1">Instant Delivery</span>
-            </div>
-        </div>
-        
-        <nav class="hidden md:flex gap-10 text-sm font-semibold text-[#3D4152]">
-            <a href="#" class="hover:text-swiggy transition-colors flex items-center gap-1.5">⚡ Features</a>
-            <a href="#" class="hover:text-swiggy transition-colors flex items-center gap-1.5">🏷️ Pricing</a>
-            <a href="#" class="hover:text-swiggy transition-colors flex items-center gap-1.5">🚀 Integrations</a>
+    <!-- Global Header Menu -->
+    <header class="bg-white border-b border-neutral-100 shadow-sm px-6 md:px-16 py-4 flex items-center justify-between">
+        <a href="/landing.html" class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-swiggy flex items-center justify-center font-bold text-white text-base">DF</div>
+            <span class="text-neutral-900 font-extrabold text-lg">DocuFlow</span>
+        </a>
+        <nav class="hidden md:flex gap-10 text-sm font-bold text-[#3D4152]">
+            <a href="/landing.html" class="text-swiggy">Home</a>
+            <a href="/pricing.html" class="hover:text-swiggy transition">Pricing</a>
+            <a href="/index.html" class="hover:text-swiggy transition">Workspace App</a>
         </nav>
-        
-        <div class="flex items-center gap-4">
-            <a href="/index.html" class="text-sm font-bold text-[#3D4152] hover:text-swiggy transition">Sign In</a>
-            <button class="bg-swiggy text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-swiggyDark active:scale-95 transition-all shadow-md shadow-swiggy/10">Launch Engine</button>
-        </div>
+        <a href="/index.html" class="bg-swiggy text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-swiggyDark transition">Launch Free App</a>
     </header>
 
-    <!-- Main Hero Canvas Layout -->
-    <main class="max-w-6xl mx-auto px-6 pt-12 pb-24 w-full flex-grow">
-        
-        <!-- Top Hero Typography Title Section -->
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-[#282C3F] mb-6 leading-[1.1]">
-                Documentation delivered <br><span class="text-swiggy">instantly on every push.</span>
-            </h1>
-            <p class="text-lg text-[#686B78] leading-relaxed font-medium">
-                Test your own code right now. Paste your functions into the production workspace below to watch our engine parse and generate a premium layout instantly.
-            </p>
+    <!-- Main Hero Panel -->
+    <main class="max-w-4xl mx-auto px-6 pt-20 pb-24 text-center flex-grow">
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-[#282C3F] mb-6 leading-[1.1]">
+            Documentation delivered <br><span class="text-swiggy">instantly on every push.</span>
+        </h1>
+        <p class="text-base md:text-lg text-[#686B78] max-w-xl mx-auto mb-10 font-medium">
+            Stop writing manuals. DocuFlow safely scans your git repository comments and deploys premium public documentation pages in under 45 seconds.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <a href="/index.html" class="w-full sm:w-auto bg-swiggy hover:bg-swiggyDark text-white text-sm font-bold px-8 py-3.5 rounded-xl transition shadow-md shadow-swiggy/10">
+                Open Free Workspace Playground →
+            </a>
+            <a href="/pricing.html" class="w-full sm:w-auto bg-white border-2 border-neutral-200 text-neutral-800 hover:bg-neutral-50 text-sm font-bold px-8 py-3.5 rounded-xl transition shadow-sm">
+                View Pricing Plans
+            </a>
         </div>
 
-        <!-- TWO COLUMN LIVE PRODUCTION CODE PLAYGROUND CANVAS -->
-        <div class="grid lg:grid-cols-2 gap-8 items-stretch mb-16">
-            
-            <!-- Left Panel: Interactive Code Console Input -->
-            <div class="bg-white border-2 border-neutral-200/80 rounded-3xl p-6 shadow-md flex flex-col justify-between">
-                <div>
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-xs font-bold text-neutral-400 uppercase tracking-wider flex items-center gap-1.5">🛠️ Code input console</span>
-                        <span class="text-[10px] bg-neutral-100 px-2 py-0.5 rounded text-neutral-500 font-mono">sampleCode.js</span>
-                    </div>
-                    <p class="text-xs text-[#686B78] mb-4">Type or edit the structural block comments below to evaluate the live engine output updates.</p>
-                    
-                    <textarea id="liveCodeInput" class="w-full h-72 p-4 bg-neutral-900 text-neutral-200 font-mono text-xs rounded-2xl outline-none focus:ring-2 focus:ring-swiggy resize-none leading-relaxed shadow-inner">/**
- * @title Process Customer Refund
- * @description Automatically processes a credit reversal payload securely via Stripe financial networks.
- * @param transactionId - The raw cryptographic reference string of the targeted invoice.
- */
-function initiateRefund(transactionId) {
-    return true;
-}</textarea>
-                </div>
-                
-                <div class="mt-4 pt-4 border-t border-neutral-100 flex items-center justify-between">
-                    <span class="text-xs text-neutral-400 font-medium">Click to compile in real time</span>
-                    <button onclick="compileLiveCodePlayground()" class="bg-swiggy hover:bg-swiggyDark text-white font-extrabold text-xs px-6 py-3 rounded-xl transition shadow-md shadow-swiggy/10 active:scale-95">
-                        Generate Live Docs ⚡
-                    </button>
-                </div>
-            </div>
-
-            <!-- Right Panel: Live Visual Output Panel Display -->
-            <div class="bg-[#282C3F] text-white rounded-3xl p-6 shadow-xl flex flex-col justify-between relative overflow-hidden">
-                <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none"></div>
-                
-                <div class="relative z-10 w-full h-full flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-center border-b border-white/10 pb-3 mb-6">
-                            <span class="text-xs font-bold text-swiggy uppercase tracking-wider flex items-center gap-1.5">✨ Live Output Preview</span>
-                            <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono font-bold animate-pulse">Sync Active</span>
-                        </div>
-                        
-                        <!-- Targeted container slot where code outputs update dynamically -->
-                        <div id="liveOutputSlot" class="space-y-4">
-                            <!-- Default Initial State Card Box -->
-                            <div class="p-6 bg-white border-2 border-neutral-100 rounded-2xl shadow-sm text-left">
-                                <span class="text-[10px] bg-orange-100 text-[#FC8019] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">Live Endpoint</span>
-                                <h3 class="text-xl font-black text-[#282C3F] mt-2 mb-1">Process Customer Refund</h3>
-                                <p class="text-sm text-[#686B78] font-medium mb-3">Automatically processes a credit reversal payload securely via Stripe financial networks.</p>
-                                <div class="p-3 bg-neutral-50 rounded-xl font-mono text-xs text-neutral-600 border border-neutral-100">
-                                    <strong>Param:</strong> transactionId - The raw cryptographic reference string of the targeted invoice.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-center text-[10px] text-white/30 border-t border-white/10 pt-4 mt-6">
-                        System Layout Compilations Provided via <span class="text-white/60 font-bold">DocuFlow Engine</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Dynamic ROI Evaluation Widget Banner Area -->
-        <div class="bg-white border-2 border-neutral-200/80 rounded-3xl p-6 md:p-8 shadow-md grid md:grid-cols-12 gap-6 items-center text-left max-w-4xl mx-auto">
+        <!-- Team ROI Savings Estimator Component -->
+        <div class="bg-[#282C3F] text-white rounded-3xl p-8 shadow-xl grid md:grid-cols-12 gap-6 items-center text-left max-w-3xl mx-auto">
             <div class="md:col-span-7">
-                <span class="text-swiggy font-bold text-xs uppercase tracking-wider font-mono">Value Analytics</span>
-                <h2 class="text-2xl font-black text-[#282C3F] mt-0.5 mb-1 tracking-tight">Calculate your team's recovered velocity</h2>
-                
-                <div class="mt-4 max-w-md">
-                    <div class="flex justify-between items-center mb-1.5">
-                        <span class="text-xs text-[#686B78] font-medium">Core Software Engineering Team Size</span>
-                        <span class="text-xs font-mono text-swiggy font-black bg-orange-50 border border-orange-100 px-2.5 py-0.5 rounded-lg"><span id="devCount">5</span> developers</span>
+                <span class="text-swiggy font-bold text-xs uppercase tracking-wider font-mono">Value Calculator</span>
+                <h2 class="text-xl font-bold text-white mt-0.5 mb-1">Calculate your team's recovered engineering hours</h2>
+                <div class="mt-4">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-xs text-neutral-400">Team Scale</span>
+                        <span class="text-xs font-mono text-swiggy font-black"><span id="devCount">5</span> devs</span>
                     </div>
-                    <input type="range" id="devSlider" min="1" max="50" value="5" class="w-full accent-swiggy bg-neutral-100 h-1 rounded-lg appearance-none cursor-pointer">
+                    <input type="range" id="devSlider" min="1" max="50" value="5" class="w-full accent-swiggy bg-white/10 h-1 rounded-lg appearance-none cursor-pointer">
                 </div>
             </div>
+            <div class="md:col-span-5 grid grid-cols-2 gap-4 text-center border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6">
+                <div>
+                    <div class="text-[9px] text-neutral-400 uppercase font-bold">Hours Saved / mo</div>
+                    <div id="hoursSaved" class="text-xl font-black text-white mt-0.5 font-mono">20 hrs</div>
+                </div>
+                <div>
+                    <div class="text-[9px] text-neutral-400 uppercase font-bold">Capital Saved</div>
+                    <div id="moneySaved" class="text-xl font-black text-emerald-400 mt-0.5 font-mono">$1,500</div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-            <div class="md:col-span-5 grid grid-cols-2 gap-4 text-center border-t md:border-t-0 md:border-l border-neutral-100 pt-6 md:pt-0 md:pl-6">
-                <div class="bg-neutral-50 border border-neutral-100 p-3.5 rounded-2xl">
-                    <div class="text-[9px] text-neutral-400 uppercase font-extrabold tracking-wider">Hours Saved / mo</div>
+    <footer class="bg-[#02060C] text-white/40 px-12 py-5 text-center text-xs">
+        &copy; 2026 DocuFlow Inc. Continuous Delivery Infrastructure Systems.
+    </footer>
+
+    <script>
+        const slider = document.getElementById('devSlider');
+        const devCount = document.getElementById('devCount');
+        const hoursSaved = document.getElementById('hoursSaved');
+        const moneySaved = document.getElementById('moneySaved');
+        slider.addEventListener('input', (e) => {
+            const devs = e.target.value; devCount.textContent = devs;
+            const hours = devs * 4; hoursSaved.textContent = hours + ' hrs';
+            const cash = hours * 75; moneySaved.textContent = '$' + cash.toLocaleString();
+        });
+    </script>
+</body>
+</html>
